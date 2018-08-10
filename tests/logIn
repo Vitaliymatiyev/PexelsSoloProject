@@ -1,0 +1,26 @@
+let inputData = {
+    myEmail: 'vitaliy.matiyev@gmail.com',
+    randomPassword: '123456789vm',
+}
+let pageO = {}
+module.exports = {
+    before: browser => {
+        pageO = browser.page.pageO()
+        pageO.navigate()
+    },
+
+    'Log in to Account': browser => {
+        pageO
+            .click('@dropDown')
+            .waitForElementVisible('@logInMenu', 3000)
+            .click('@logInMenu')
+            .click('@entryEmail')
+            .setValue('@entryEmail', inputData.myEmail)
+            .click('@entryPassword')
+            .setValue('@entryPassword', inputData.randomPassword)
+            .click('@buttonLogin')
+            .click('@pexelsHomeIcon')
+        browser.pause(100)
+    }
+
+}
